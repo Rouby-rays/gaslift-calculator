@@ -1,5 +1,5 @@
 const { src, dest, series, watch } = require('gulp')
-const sass = require('gulp-sass')(require('sass'));   //Sass компилятор
+const less = require('gulp-less');   
 const csso = require('gulp-csso');                    //Минификация css
 const include = require('gulp-file-include')
 const htmlmin = require('gulp-htmlmin')
@@ -19,9 +19,9 @@ function html() {
     .pipe(dest('dist'))
 }
 
-function scss() {
-  return src('src/scss/**scss')
-    .pipe(sass())
+function styles() {
+  return src('src/less/main.less')
+    .pipe(less())
     .pipe(autoprefixer({
       overrideBrowserslist: ['last 2 versions']
     }))
@@ -40,9 +40,9 @@ function serve() {
   })
 
   watch('src/**.html', series(html)).on('change', sync.reload)
-  watch('src/scss/**.scss', series(scss)).on('change', sync.reload)
+  watch('src/scss/**.scss', series(styles)).on('change', sync.reload)
 }
 
-exports.build = series(clear, scss, html)          //Для продакшена
-exports.serve = series(clear, scss, html, serve)   //Для разработки
+exports.build = series(clear, styles, html)          
+exports.dev = series(clear, styles, html, serve)   
 exports.clear = clear

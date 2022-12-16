@@ -1,13 +1,71 @@
-@@include('parts/header.html')
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gas lift calculator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
 
-  <h1>Home page</h1>
-  <ul>
-    <li>lorem</li>
-    <li>lorem</li>
-    <li>lorem</li>
-    <li>lorem</li>
-    <li>lorem</li>
-  </ul>
-  ewrewr
+	<main class="main">
+	  <div class="container">
+		<h1 class="title">Рассчет усилия</h1>
+		<p class="subtitle">Введите данные</p>	
+	    <section class="main-section">  
+		  
+			<div class="input-wrapper">
+			  <input class="form-input__field" id="width" type="number" placeholder="Ширина фасада">
+			  <span id="width-error" class="form-inpu__error"></span>
+			</div>
+		  
+			<div class="input-wrapper">
+		      <input class="form-input__field" id="height" type="number" placeholder="Высота фасада">
+		      <span id="height-error" class="form-inpu__error"></span>
+		    </div>
+		    
+		<label for="material">Тип материала:</label>
+		<select id="material" >
+		  <option value="0.00000069">ДСП</option>
+		  <option value="0.00000075">МДФ</option>
+		</select>
 
-  @@include('parts/footer.html')
+		<label for="thickness">Толщина материала:</label>
+		<select id="thickness">
+		  <option value="16">16</option>
+		  <option value="18">18</option>
+		  <option value="19">19</option>
+		</select>
+
+		<div class="degree">
+		  <label>Угол открывания:</label>
+          <input type="radio" name="degrees" value="100">75&deg
+		  <input type="radio" name="degrees" value="90" >90&deg
+		  <input type="radio" name="degrees" value="80" checked>100&deg
+		</div>
+		<div class="quantity">
+		  <label>Количество кронштейнов:</label>
+		  <input type="radio" name="quantity" value="1" data-quantity="Один кронштейн ">1
+		  <input type="radio" name="quantity" value="2" data-quantity="Два кронштейна "checked>2
+		</div>
+
+		<div class="output">
+		  <label for="door-weight">Масса фасада:</label>
+		  <output id="door-weight">0</output>
+		  <label for="lift-type">Результат:</label>
+		  <output id="lift-type">-</output>
+		</div>
+
+		<div class="keyboard">
+		  <button class="button count" type="button">Считать</button>
+		  <button class="button clear" type="button">Очистить</button>
+		</div>
+
+	    </section>
+	  </div>
+	  
+	</main>
+  <script src="js/script.js"></script>
+  </body>
+</html>
