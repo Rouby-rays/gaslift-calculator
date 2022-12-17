@@ -40,7 +40,7 @@ function serve() {
   })
 
   watch('src/**.html', series(html)).on('change', sync.reload)
-  watch('src/scss/**.scss', series(styles)).on('change', sync.reload)
+  watch('src/less/**.less', series(styles)).on('change', sync.reload)
 }
 
 exports.build = series(clear, styles, html)          
