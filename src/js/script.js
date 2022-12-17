@@ -61,15 +61,17 @@ count.onclick = function () {
       liftType.textContent = liftQuantityOutput + '60N';
     } else if (force <= 8) {
       liftType.textContent = liftQuantityOutput + '80N';
-    }  else if (force <= 10) {
-        liftType.textContent = liftQuantityOutput + '100N';
-    }  else if (force <= 12) {
+    } else if (force <= 10) {
+      liftType.textContent = liftQuantityOutput + '100N';
+    } else if (force <= 12) {
         liftType.textContent = liftQuantityOutput + '120N';
-    }  else if (force > 15 || force < 18) {
-        liftType.textContent = liftQuantityOutput + '150N';
+    } else if (force < 18) {
+      liftType.textContent = liftQuantityOutput + '150N';
     } else {
       liftType.textContent = 'Ошибка';
     }
+
+    console.log(force)
 };
 
 clearButton.addEventListener('click', () => {

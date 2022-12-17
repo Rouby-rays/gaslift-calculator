@@ -20,6 +20,7 @@
     "gulp-csso": "^4.0.1",
     "gulp-file-include": "^2.3.0",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-less": "^5.0.0"
+    "gulp-less": "^5.0.0",
+    "gulp-uglify-es": "^3.0.0"
   }
 }

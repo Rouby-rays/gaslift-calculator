@@ -6,7 +6,8 @@ const htmlmin = require('gulp-htmlmin')
 const del = require('del')
 const concat = require('gulp-concat');                // Объединение набора файлов в один
 const autoprefixer = require('gulp-autoprefixer');   // Добавление вендорных префиксов
-const sync = require('browser-sync').create()
+const sync = require('browser-sync').create();
+const uglify = require('gulp-uglify-es').default;
 
 function html() {
   return src('src/**.html')
@@ -30,6 +31,13 @@ function styles() {
     .pipe(dest('dist'))
 }
 
+function scripts() {
+  return src('src/js/script.js')
+  .pipe(concat('script.min.js'))
+  .pipe(uglify())
+  .pipe(dest('dist/js/'))
+}
+
 function clear() {
   return del('dist')
 }
@@ -41,8 +49,9 @@ function serve() {
 
   watch('src/**.html', series(html)).on('change', sync.reload)
   watch('src/less/**.less', series(styles)).on('change', sync.reload)
+  watch('src/js/**.js', series(scripts)).on('change', sync.reload)
 }
 
-exports.build = series(clear, styles, html)          
-exports.dev = series(clear, styles, html, serve)   
+exports.build = series(clear, styles, scripts, html)          
+exports.dev = series(clear, styles, html, scripts, serve)   
 exports.clear = clear
